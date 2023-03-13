@@ -1,53 +1,29 @@
+// // server.js
 
-const express = require('express');
-const cors = require('cors');
-const fetch = (...args) =>
-import('node-fetch').then(({default: fetch}) => fetch(...args));
-const bodyParser = require('body-parser');
+// const express = require('express');
+// const { Pool } = require('pg');
 
+// const app = express();
 
-const CLIENT_ID = "438f9e1d00fa92021341";
-const CLIENT_SECRET = "b3c37ca13e1365800e084515a492c9e86199150d";
+// const pool = new Pool({
+//   user: 'your_username',
+//   host: 'your_host',
+//   database: 'your_database',
+//   password: 'your_password',
+//   port: 5432,
+// });
 
-const app = express();
+// app.get('/api/data', (req, res) => {
+//   pool.query('SELECT * FROM your_table', (err, result) => {
+//     if (err) {
+//       console.error(err);
+//       res.status(500).json({ error: 'Internal server error' });
+//     } else {
+//       res.json(result.rows);
+//     }
+//   });
+// });
 
-app.use(cors());
-app.use(bodyParser.json());
-
-app.get('/getAccessToken', async function(req, res){
-    req.query.code;
-
-    const params = "?client_id=" + CLIENT_ID + "&client_secret=" + CLIENT_SECRET + "&code=" + req.query.code;
-
-    await fetch("https://github.com/login/oauth/access_token" + params, {
-        method: "POST",
-        header: {
-            "Accept": "application/json"
-        }
-    }).then((response) => {
-        return response.json();
-    }).then((data) => {
-        console.log(data);
-        res.json(data);
-    });
-});
-
-
-app.get('/getUserData', async function(req, res) {
-    req.get("Authorization");
-    await fetch("https://api.github.com/user", {
-        method: "GET",
-        headers: {
-            "Authorization": req.get("Authorization")
-        }
-    }).then((response) => {
-        return response.json();
-    }).then((data) => {
-        console.log(data);
-        res.json(data);
-    })
-})
-
-app.listen(4000, function () {
-    console.log('CORS server running on port 4000');
-});
+// app.listen(5000, () => {
+//   console.log('Server started on port 5000');
+// });
